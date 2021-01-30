@@ -28,6 +28,7 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+// Arthur added this comment
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
