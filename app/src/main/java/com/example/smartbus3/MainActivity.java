@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -31,8 +32,25 @@ public class MainActivity extends AppCompatActivity {
 
     ListView listView;
 
-    public void addaswipe(View view)
+
+    String m="";
+    public void swiped(View v) {
+        TextView tv = (TextView) v;
+        Toast.makeText(this, tv.getText(), Toast.LENGTH_SHORT).show();
+        makeaswipe( Integer.parseInt(tv.getText().toString())%6+4);
+
+        ((TextView) v).setText("");
+        v.setFocusableInTouchMode(true);
+        v.requestFocus();
+        }
+
+    public void addaswipe(View view) {
+        makeaswipe(9);
+    }
+
+    public void makeaswipe(int sid)
     {
+
         ToneGenerator toneg1=new ToneGenerator(AudioManager.STREAM_MUSIC,100);
         toneg1.startTone(ToneGenerator.TONE_CDMA_PIP,150);
 
@@ -48,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         String ts=simple.format(currentmillis);
         double latitude=10;
         double longitude=10;
-        int sid=9;
 
         try {
             downloadJSON("http://employees.oneonta.edu/zhangs/csci242disabled/smartbus/newswipe.php?sid="
